@@ -1,5 +1,6 @@
 package org.yourcompany.project.Tests;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.yourcompany.project.*;
 import java.util.EmptyStackException;
 
@@ -9,6 +10,29 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.*;
 import org.junit.jupiter.params.provider.*;
+
+@ParameterizedClass
+@ValueSource(strings = { "apple", "orange" })
+class FruitTests {
+
+    @Parameter
+    String fruit;
+
+    @Nested
+    @ParameterizedClass
+    @ValueSource(ints = { 1, 2 })
+    class QuantityTests {
+
+        @Parameter
+        int quantity;
+
+        @ParameterizedTest
+        @ValueSource(strings = { "duration-1", "duration-2" })
+        void test(String duration) {
+            System.out.println(fruit + " " + quantity + " " + duration);
+        }
+    }
+}
 
 class nestingTest {
 
@@ -35,12 +59,12 @@ class nestingTest {
 
         @Test
         void throwsExceptionWhenPopped() {
-            assertThrows(EmptyStackException.class, stack::pop);
+            assertThrows(EmptyStackException.class, () -> stack.pop());
         }
 
         @Test
         void throwsExceptionWhenPeeked() {
-            assertThrows(EmptyStackException.class, stack::peek);
+            assertThrows(EmptyStackException.class, () -> stack.peek());
         }
 
         @Nested
@@ -73,31 +97,6 @@ class nestingTest {
                 assertEquals(anElement, stack.peek());
                 assertFalse(stack.isEmpty());
             }
-        }
-    }
-}
-
-@ParameterizedClass
-@ValueSource(strings = { "apple", "orange" })
-class FruitTests {
-
-    @Parameter
-    String fruit;
-
- 
-    @Nested
-    @ParameterizedClass
-    @ValueSource(ints = { 1, 2 })
-    class QuantityTests {
-      
-
-        @Parameter
-        int quantity;
-
-        @ParameterizedTest
-        @ValueSource(strings = { "duration-1", "duration-2" })
-        void test(String duration) {
-            System.out.println(fruit + " " + quantity + " " + duration);
         }
     }
 }

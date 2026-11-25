@@ -1,11 +1,13 @@
 //INSTALL MAVEN BIN FOLDER AND ADD TO ENVIONMENT PATH VARIABLE
 
 package org.yourcompany.project.Tests;
+
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 //to run tests with both tags or one specific tag: mvn test -Dgroups="fast,model" 
-//to avoid running tests with a specific tag use :mvn test -DexcludeGroups="tagname"
+//to avoid running tests with a specific tag use :mvn test -DexcludedGroups="tagnam"
+// command to avoid running only the aggeing test exlcluding: : mvn test "-Dtest=TaggingTest" "-DexcludedGroups=taxes"
 
 // 👇 This class has two tags: "fast" and "model"
 @Tag("fast")

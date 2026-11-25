@@ -6,7 +6,6 @@ package org.yourcompany.project;
 
 /**
  *
- * @author aykai
  */
 public class Junit_testing {
 
