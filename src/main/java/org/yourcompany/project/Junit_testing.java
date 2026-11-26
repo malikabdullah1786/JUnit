@@ -10,6 +10,12 @@ package org.yourcompany.project;
 // for standAlone file 
 // mvn test "-Dtest=nestingTest" "-Dsurefire.skipAfterFailureCount=1"
 
+/* $cp = "target/test-classes;target/classes;" + (Get-Content target/test-classpath.txt -Raw)
+
+java -jar .\junit-platform-console-standalone-6.0.2.jar execute --class-path "$cp" --scan-class-path --fail-fast
+
+ */
+
 public class Junit_testing {
 
     public static void main(String[] args) {

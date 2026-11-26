@@ -27,7 +27,7 @@ public class RepeatedDemoTest {
         assertEquals(5, repetitionInfo.getTotalRepetitions());
     }
 
-    // @Disabled("Intentional failureThreshold demo")
+    @Disabled("Intentional failureThreshold demo")
     @RepeatedTest(value = 8, failureThreshold = 2)
     void repeatedTestWithFailureThreshold(RepetitionInfo repetitionInfo) {
         // Simulate unexpected failure every second repetition
