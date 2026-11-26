@@ -23,10 +23,9 @@ public class ExceptionTest {
     // ✅ 2. Exception cause chain testing
     @Test
     void testExceptionCauseChain() {
-        DatabaseConnectionException exception =
-            assertThrows(DatabaseConnectionException.class, () -> {
-                exceptionDemo.connectDatabase();
-            });
+        DatabaseConnectionException exception = assertThrows(DatabaseConnectionException.class, () -> {
+            exceptionDemo.connectDatabase();
+        });
 
         // Verify top-level message
         assertEquals("Database connection failed", exception.getMessage());
@@ -38,10 +37,9 @@ public class ExceptionTest {
     // ✅ 3. Custom matcher — verify message content pattern
     @Test
     void testCustomMatcherForNullPointer() {
-        NullPointerException exception =
-            assertThrows(NullPointerException.class, () -> {
-                exceptionDemo.getUserName(null);
-            });
+        NullPointerException exception = assertThrows(NullPointerException.class, () -> {
+            exceptionDemo.getUserName(null);
+        });
 
         // ✅ Custom message matcher logic
         assertTrue(exception.getMessage().toLowerCase().contains("cannot be null"),
@@ -51,7 +49,7 @@ public class ExceptionTest {
 
     // ✅ 4. No exception test (for contrast)
     @Test
-    void testRegisterUserSuccess() throws InvalidAgeException {
+    void testRegisterUserSuccess() {
         assertDoesNotThrow(() -> exceptionDemo.registerUser(20));
         System.out.println("✔ No exception thrown for valid age!");
     }

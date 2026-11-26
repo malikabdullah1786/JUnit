@@ -24,6 +24,7 @@ public class ConditionalClassTest {
     // 1️Based on Operating System
     @Test
     @EnabledOnOs(OS.WINDOWS)
+
     void runOnlyOnWindows() {
         assertTrue(checker.getOperatingSystem().toLowerCase().contains("windows"));
     }
@@ -35,12 +36,12 @@ public class ConditionalClassTest {
     }
 
     @Test
-    @EnabledOnOs({OS.LINUX, OS.MAC})
+    @EnabledOnOs({ OS.LINUX, OS.MAC })
     void runOnLinuxOrMac() {
         System.out.println("Running on Linux or Mac!");
     }
 
-    //  Based on Java Version
+    // Based on Java Version
     @Test
     @EnabledOnJre(JRE.JAVA_17)
     void runOnlyOnJava17() {
@@ -53,7 +54,7 @@ public class ConditionalClassTest {
         System.out.println("Java version between 17 and 21");
     }
 
-    //  Based on Native Image
+    // Based on Native Image
     @Test
     @EnabledInNativeImage
     void runOnlyInNativeImage() {
@@ -79,7 +80,7 @@ public class ConditionalClassTest {
         System.out.println("Skipping test on CI server");
     }
 
-    //Based on Environment Variables
+    // Based on Environment Variables
     @Test
     @EnabledIfEnvironmentVariable(named = "ENV", matches = "staging-server")
     void runOnlyOnStaging() {
@@ -92,28 +93,29 @@ public class ConditionalClassTest {
         System.out.println("Skipping on developer workstation");
     }
 
-    //this requires use of junit pioneer which i tried to add but couldnt get to work
-    //Custom Condition — internal method
+    // this requires use of junit pioneer which i tried to add but couldnt get to
+    // work
+    // Custom Condition — internal method
     // @Test
     // @EnabledIf("customCondition")
     // void customEnabled() {
-    //     System.out.println("Custom condition returned true, running test!");
+    // System.out.println("Custom condition returned true, running test!");
     // }
 
     // @Test
     // @DisabledIf("customCondition")
     // void customDisabled() {
-    //     System.out.println("Custom condition returned true, skipping test!");
+    // System.out.println("Custom condition returned true, skipping test!");
     // }
 
     // // Custom Condition — external class
     // @Test
     // @EnabledIf("example.ConditionalClass#staticCustomCondition")
     // void externalCustomCondition() {
-    //     System.out.println("Static custom condition enabled this test!");
+    // System.out.println("Static custom condition enabled this test!");
     // }
 
-    //other way to do custom condition without junit pioneer
+    // other way to do custom condition without junit pioneer
     @Test
     void customEnabled() {
         if (checker.customCondition()) {
